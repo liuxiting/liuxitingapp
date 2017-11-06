@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.lanzun">
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />         <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />           <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />//读取sd卡权限
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />//写入sd卡权限
+    <uses-permission android:name="android.permission.CAMERA" />//打开相机权限
+    <!--百度定位权限-->
+    <!-- 这个权限用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <!-- 这个权限用于访问GPS定位-->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"></uses-permission>
+    <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <!-- SD卡读取权限，用户写入离线定位数据-->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"></uses-permission>
+    <application
+        android:allowBackup="true"
+        android:name=".MyApplication"
+        android:icon="@mipmap/logo"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/logo"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:replace="android:icon, android:theme"
+        >
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="bkUrw94tClBQoftMroWpBaddjqRQKyHu" />
+        <activity android:name=".activity.LaunchActivity"
+            android:theme="@style/AppTheme"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity"
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTask"
+            />
+        <activity android:name=".activity.LoginActivity"
+            android:theme="@style/AppTheme"></activity>
+
+        <service android:name="com.baidu.location.f"
+            android:enabled="true" android:process=":remote">
+        </service>
+        <service
+            android:name="service.VersionService"
+            android:enabled="true"
+            android:exported="true" />
+        <service android:name="service.AutoService"></service>
+        <!--记录列表详情-->
+        <activity android:name=".activity.RecordDetailsActivity"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <activity android:name=".activity.PhotoBrowserActivity"
+            android:theme="@style/AppTheme"
+            >
+        </activity>
+        <activity android:name=".activity.MusicPlayerActivity"
+            android:theme="@style/AppTheme"
+
+            ></activity>
+        <activity android:name=".activity.VideoJZActivity"
+            android:theme="@style/AppTheme"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:screenOrientation="portrait"
+            ></activity>
+        <activity android:name=".activity.TaskDetailActivity"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <activity android:name=".activity.TaskCompleteActivity"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <service android:name="service.ServiceDemo02"
+            android:enabled="true"
+            android:exported="true"
+            ></service>
+    </application>
+
+</manifest>
